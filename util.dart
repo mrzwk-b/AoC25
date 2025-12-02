@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'dart:math';
 
-List<String> readInput([String inputFileName = "input.txt"]) =>
-  File([Directory.current.path, inputFileName].join(Platform.pathSeparator)).readAsLinesSync()
+List<String> readInput([final String? inputFileName]) =>
+  File([Directory.current.path, inputFileName ?? 'input.txt'].join(Platform.pathSeparator)).readAsLinesSync()
 ;
 
 bool onMap(int row, int col, List<List> map) => 
