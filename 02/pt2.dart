@@ -1,3 +1,4 @@
+import '../util.dart';
 import 'pt1.dart';
 
 DecimalInt replicateDigits(DecimalInt number, int times) {

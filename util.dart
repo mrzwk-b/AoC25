@@ -149,3 +149,35 @@ int bitwiseOperation(bool Function(bool, bool) operation, int bits, int left, in
   }
   return output;
 }
+
+class DecimalInt {
+  final int value;
+  final List<int> digits;
+
+  DecimalInt.fromDigits(this.digits): value = digits.reduce((a, b) => (10 * a) + b);
+  DecimalInt.fromValue(this.value): 
+    digits = ((int value) {
+      List<int> digits = [];
+      while (value > 0) {
+        digits.insert(0, value % 10);
+        value ~/= 10;
+      }
+      return digits;
+    }) (value)
+  ;
+  
+  bool operator ==(Object other) => other is DecimalInt && value == other.value;
+  bool operator <(DecimalInt other) => value < other.value;
+  bool operator <=(DecimalInt other) => value <= other.value;
+  bool operator >(DecimalInt other) => value > other.value;
+  bool operator >=(DecimalInt other) => value >= other.value;
+
+  DecimalInt operator +(DecimalInt other) => DecimalInt.fromValue(value + other.value);
+  DecimalInt operator -(DecimalInt other) => DecimalInt.fromValue(value - other.value);
+  DecimalInt operator *(DecimalInt other) => DecimalInt.fromValue(value * other.value);
+  DecimalInt operator ~/(DecimalInt other) => DecimalInt.fromValue(value ~/ other.value);
+  DecimalInt operator %(DecimalInt other) => DecimalInt.fromValue(value % other.value);
+
+  @override
+  String toString() => this.value.toString();
+}
