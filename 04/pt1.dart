@@ -38,5 +38,4 @@ void main() {
   stopwatch.stop();
   print(totalAccessible);
   print('ran in ${stopwatch.elapsedMicroseconds} microseconds');
-  while (true);
 }

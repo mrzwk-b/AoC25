@@ -23,5 +23,4 @@ void main() {
   stopwatch.stop();
   print(totalRemoved);
   print('ran in ${stopwatch.elapsedMicroseconds} microseconds');
-  while (true);
 }
