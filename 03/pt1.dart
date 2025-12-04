@@ -1,7 +1,7 @@
 import '../util.dart';
 
-List<List<int>> getData([String? inputFileName]) =>
-  readInput(inputFileName).map(
+List<List<int>> formatData(List<String> input) =>
+  input.map(
     (line) => line.split('').map(
       (char) => int.parse(char)
     ).toList()
@@ -33,13 +33,12 @@ int maxJoltage(List<int> bank) {
 }
 
 void main() {
-  List<List<int>> powerBanks = getData();
+  List<String> input = readInput();
   Stopwatch stopwatch = Stopwatch()..start();
   
-  int total = powerBanks.map((bank) => maxJoltage(bank)).reduce((a, b) => a + b);
+  int total = formatData(input).map((bank) => maxJoltage(bank)).reduce((a, b) => a + b);
   
   stopwatch.stop();
   print(total);
   print('ran in ${stopwatch.elapsedMicroseconds} microseconds');
-  while (true);
 }

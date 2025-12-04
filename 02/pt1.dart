@@ -1,7 +1,7 @@
 import '../util.dart';
 
-List<(DecimalInt, DecimalInt)> getData([final String? inputFileName]) =>
-  readInput(inputFileName).single.split(',').map((range) {
+List<(DecimalInt, DecimalInt)> formatData(List<String> input) =>
+  input.single.split(',').map((range) {
     final List<String> startAndFinish = range.split('-');
     return (
       DecimalInt.fromValue(int.parse(startAndFinish[0])),
@@ -32,11 +32,11 @@ List<DecimalInt> invalidIdsInRange(DecimalInt start, DecimalInt end) => [
 ];
 
 void main() {
-  List<(DecimalInt, DecimalInt)> ranges = getData();
+  List<String> input = readInput();
   Stopwatch stopwatch = Stopwatch()..start();
   
   final List<DecimalInt> invalidIds = [];
-  for ((DecimalInt, DecimalInt) range in ranges) {
+  for ((DecimalInt, DecimalInt) range in formatData(input)) {
     invalidIds.addAll(invalidIdsInRange(range.$1, range.$2));
   }
   DecimalInt total = invalidIds.reduce((a, b) => a + b);

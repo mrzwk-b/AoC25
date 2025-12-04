@@ -5,7 +5,7 @@ List<String> readInput([final String? inputFileName]) =>
   File([Directory.current.path, inputFileName ?? 'input.txt'].join(Platform.pathSeparator)).readAsLinesSync()
 ;
 
-bool onMap(int row, int col, List<List> map) => 
+bool onGrid(int row, int col, List<List> map) => 
   row >= 0 && row < map.length &&
   col >= 0 && col < map[0].length
 ;
@@ -60,6 +60,11 @@ class Vector {
 List<Vector> orthogonals = [
   Vector(-1, 0), Vector(1, 0),
   Vector(0, -1), Vector(0, 1)
+];
+
+List<Vector> diagonals = [
+  Vector(-1, -1), Vector(-1, 1),
+  Vector(1, -1), Vector(1, 1)
 ];
 
 /// doesn't behave like normal binary search in that

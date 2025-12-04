@@ -61,11 +61,11 @@ List<DecimalInt> invalidIdsInRange(DecimalInt start, DecimalInt end) {
 }
 
 void main() {
-  List<(DecimalInt, DecimalInt)> ranges = getData();
+  List<String> input = readInput();
   Stopwatch stopwatch = Stopwatch()..start();
-
+  
   final List<DecimalInt> invalidIds = [];
-  for ((DecimalInt, DecimalInt) range in ranges) {
+  for ((DecimalInt, DecimalInt) range in formatData(input)) {
     invalidIds.addAll(invalidIdsInRange(range.$1, range.$2));
   }
   DecimalInt total = invalidIds.reduce((a, b) => a + b);

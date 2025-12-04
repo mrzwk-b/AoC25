@@ -19,11 +19,12 @@ DecimalInt greatestNDigitNumber(int numDigits, List<int> digitPool) {
 int maxJoltage(List<int> bank) => greatestNDigitNumber(12, bank).value;
 
 void main() {
-  List<List<int>> powerBanks = getData();
+  List<String> input = readInput();
   Stopwatch stopwatch = Stopwatch()..start();
-  int total = powerBanks.map((bank) => maxJoltage(bank)).reduce((a, b) => a + b);
+  
+  int total = formatData(input).map((bank) => maxJoltage(bank)).reduce((a, b) => a + b);
+  
   stopwatch.stop();
   print(total);
   print('ran in ${stopwatch.elapsedMicroseconds} microseconds');
-  while (true);
 }

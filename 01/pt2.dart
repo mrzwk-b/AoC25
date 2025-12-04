@@ -1,12 +1,13 @@
+import '../util.dart';
 import 'pt1.dart';
 
 void main() {
-  List<Rotation> rotations = getData();
+  List<String> input = readInput();
   Stopwatch stopwatch = Stopwatch()..start();
   
   int dialValue = 50;
   int zeros = 0;
-  for (Rotation rotation in rotations) {
+  for (Rotation rotation in formatData(input)) {
     int newDialValue = rotate(dialValue, rotation);
     zeros += 
       ((rotation.distance ~/ 100) - (rotation.distance % 100 == 0 ? 1 : 0)) +
