@@ -61,9 +61,16 @@ List<DecimalInt> invalidIdsInRange(DecimalInt start, DecimalInt end) {
 }
 
 void main() {
+  List<(DecimalInt, DecimalInt)> ranges = getData();
+  Stopwatch stopwatch = Stopwatch()..start();
+
   final List<DecimalInt> invalidIds = [];
-  for ((DecimalInt, DecimalInt) range in getData()) {
+  for ((DecimalInt, DecimalInt) range in ranges) {
     invalidIds.addAll(invalidIdsInRange(range.$1, range.$2));
   }
-  print(invalidIds.reduce((a, b) => a + b));
+  DecimalInt total = invalidIds.reduce((a, b) => a + b);
+
+  stopwatch.stop();
+  print(total);
+  print('ran in ${stopwatch.elapsedMicroseconds} microseconds');
 }

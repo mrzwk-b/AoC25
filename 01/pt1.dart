@@ -13,13 +13,19 @@ int rotate(int dialValue, Rotation rotation) =>
 ;
 
 void main() {
+  List<Rotation> rotations = getData();
+  Stopwatch stopwatch = Stopwatch()..start();
+  
   int dialValue = 50;
   int zeros = 0;
-  for (Rotation rotation in getData()) {
+  for (Rotation rotation in rotations) {
     dialValue = rotate(dialValue, rotation);
     if (dialValue == 0) {
       zeros += 1;
     }
   }
+  
+  stopwatch.stop();
   print(zeros);
+  print('ran in ${stopwatch.elapsedMicroseconds} microseconds');
 }
