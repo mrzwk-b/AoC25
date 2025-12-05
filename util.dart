@@ -70,16 +70,16 @@ List<Vector> diagonals = [
 /// doesn't behave like normal binary search in that
 /// if [target] doesn't exist it still returns
 /// the index at which it should be inserted
-int binarySearch(List<int> list, int target) =>
+int binarySearch<T>(List<T> list, T target, int Function(T, T) compare) =>
   list.isEmpty ? 
     0
   :
-  list[list.length ~/ 2] > target ? 
-    binarySearch(list.sublist(0, list.length ~/ 2), target) 
+  compare(list[list.length ~/ 2], target) > 0 ? 
+    binarySearch(list.sublist(0, list.length ~/ 2), target, compare) 
   :
-  list[list.length ~/ 2] < target ? 
+  compare(list[list.length ~/ 2], target) < 0 ? 
     (list.length ~/ 2) + 1 +
-    binarySearch(list.sublist((list.length ~/ 2) + 1), target)
+    binarySearch(list.sublist((list.length ~/ 2) + 1), target, compare)
   :
     list.length ~/ 2
 ;
@@ -140,6 +140,9 @@ class PriorityQueue<T> {
     }
     return value;
   }
+
+  // generates a list by removing all items from the queue in order
+  List<T> toList() => [for (;heap.length > 0;) remove()];
 
   @override String toString() => heap.toString();
 }
